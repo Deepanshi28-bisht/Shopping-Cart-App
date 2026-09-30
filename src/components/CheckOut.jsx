@@ -15,13 +15,19 @@ const CheckOut = () => {
     const [discount, setDiscount] = useState(0);
     const [couponApplied, setCouponApplied] = useState(false);
     console.log("totalPrice", totalPrice);
+    const couponArr = ["SAVE10", "FLAT20", "HOME15"];
     const validation = () => {
         if (couponApplied) {
             alert("You have already applied a coupon")
+            return
         }
         const code = coupon.trim().toUpperCase();
         if (!code) {
             alert("please enter code first")
+            return
+        }
+        if (!couponArr.includes(code)) {
+            alert("invalid coupon code");
         }
         if (code === "SAVE10" && totalPrice >= Number(50)) {
             const discountPrice = totalPrice * 0.1;
@@ -61,7 +67,7 @@ const CheckOut = () => {
                                 type="text"
                                 id="coupon"
                                 placeholder="Enter coupon code"
-                                className="border border-[#ccc] py-1 px-2 outline-none rounded-lg"
+                                className="border border-[#ccc] py-1 px-2 outline-none rounded-lg uppercase placeholder:lowercase"
                                 value={coupon}
                                 disabled={couponApplied}
                                 onChange={(e) => setCoupon(e.target.value)}

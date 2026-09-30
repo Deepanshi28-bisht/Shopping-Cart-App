@@ -13,6 +13,8 @@ const ProductsCard = ({ data }) => {
   );
   const cartItem = cartState.cart.find((item) => item.id === data.id);
   const remainingStock = currentProduct.stock - (cartItem?.qty || 0);
+  console.log("remainingStock", remainingStock);
+  
   const isItemInCart = cartState.cart.some((item) => item.id === data.id);
   function handleAddtoCart(product) {
     if (isItemInCart) {
@@ -77,7 +79,12 @@ const ProductsCard = ({ data }) => {
                 {isItemInCart ? "Remove from Cart" : "Add to Cart"}
               </button>
           }
-
+        {
+          remainingStock >0 &&  remainingStock<=3 ?
+          <span className="text-red-700 font-bold">
+            Only <span className="text-xl">{remainingStock}</span> in the stock
+          </span>:""
+        }
         </>
       )}
     </div>

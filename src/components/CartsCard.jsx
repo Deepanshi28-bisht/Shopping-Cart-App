@@ -32,7 +32,7 @@ const CartsCard = ({ data }) => {
                 <div className="flex flex-col gap-1 ">
                     <span className='text-base'>{data.brand}</span>
                     <span className="font-bold text-lg">{data.name}</span>
-                    <span className='text-base font-bold'>${data.price}</span>
+                    <span className='text-base font-bold'>${data.price * data.qty}</span>
                 </div>
                 <div className='flex gap-4 items-center justify-center'>
                     <button
@@ -46,10 +46,10 @@ const CartsCard = ({ data }) => {
                         <span className="text-xl font-bold">{data.qty}</span>
                         <button onClick={() => increaseQty(data.id)}>+</button>
                     </div>
-                      <Link
+                    <Link
                         to={`/cart/${data.id}/checkout`}
                         className="bg-green-500 text-white py-2 px-4 rounded-md text-sm font-bold"
-                       
+
                     >
                         Check Out
                     </Link>
